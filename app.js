@@ -40,20 +40,30 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 var io = require('socket.io').listen(server);
 
-var playersJoined = 0;
+
 
 io.sockets.on('connection', function (socket) {
-  table.AddPlayer(('Player ' + playersJoined), 1000);
-  socket.broadcast.emit('player-connected', {});
-  //var players = toJSON(table.players);
-  socket.emit('i-connected', { playerNumber:playersJoined });
-  playersJoined++;
+  table.AddPlayer('Player Name', 1000);
+   
+  socket.emit('player-connected', { playerNumber:table.players.length });
 
   socket.on('chat-send', function (data) {
     socket.broadcast.emit('chat-receive', {name: data.name, message:data.message});
   });
 
-  socket.on('game-start', function(data) {
+  socket.on('game-start', function() {
   	table.StartGame();
-  })
+	socket.emit('player-details', {}); //asks for player numbers
+	socket.broadcast.emit('player-details', {}); //asks for player numbers
+  });
+  
+  socket.on('player-number', function(data){
+	  var pn = data.number - 1; //because arrays are stupid
+	  var playerHand = table.players[pn].cards;
+	  socket.emit('player-hand', {hand: playerHand});
+  });
+
+  
+  
+  
 });

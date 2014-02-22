@@ -1,19 +1,22 @@
 var playerNumber = null;
 
 
-var socket = io.connect('http://192.168.1.183:3000');
+var socket = io.connect('http://192.168.1.195:3000');
 socket.on('chat-receive', function (data) {
 	console.log(data.name + " says '"+data.message+"'")
 });
 
 socket.on('player-connected', function (data) {
-	console.log('Somebody connected to this room!');
+	console.log('I am player number: ' + data.playerNumber); 
+	playerNumber = data.playerNumber; //store the player number
 });
 
-socket.on('i-connected', function (data) {
-	console.log('I am player number: ' + data.playerNumber);
-	playerNumber = data.playerNumber;
-	//players = data.players; 
+socket.on('player-details', function () {
+	socket.emit('player-number', {number: playerNumber}); //send back the player number
+});
+
+socket.on('player-hand', function (data) {
+	console.log('My Hand is: ' + data.hand );
 });
 
 
@@ -26,5 +29,5 @@ document.getElementById("chat-send").addEventListener("click",
 
 document.getElementById("game-start").addEventListener("click",
 	function(event) {
-		socket.emit('game-start', {name:name, message:message});
+		socket.emit('game-start', {});
 });
