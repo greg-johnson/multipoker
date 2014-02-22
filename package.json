@@ -9,6 +9,5 @@
     "express": "3.4.8",
     "jade": "*",
     "socket.io": "0.9.16",
-    "node-poker": "0.0.2"
   }
 }

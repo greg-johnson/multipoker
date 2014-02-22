@@ -1,0 +1,3 @@
+[submodule "node-poker"]
+	path = node-poker
+	url = https://github.com/mjhbell/node-poker.git
