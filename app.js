@@ -12,6 +12,8 @@ var poker = require('./node-poker/lib/node-poker');
 
 var app = express();
 
+var table = new poker.Table(50,100,2,10,100,1000);
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -38,9 +40,20 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 var io = require('socket.io').listen(server);
 
+var playersJoined = 0;
+
 io.sockets.on('connection', function (socket) {
-  socket.broadcast.emit('user-connected', {});
+  table.AddPlayer(('Player ' + playersJoined), 1000);
+  socket.broadcast.emit('player-connected', {});
+  //var players = toJSON(table.players);
+  socket.emit('i-connected', { playerNumber:playersJoined });
+  playersJoined++;
+
   socket.on('chat-send', function (data) {
     socket.broadcast.emit('chat-receive', {name: data.name, message:data.message});
   });
+
+  socket.on('game-start', function(data) {
+  	table.StartGame();
+  })
 });
