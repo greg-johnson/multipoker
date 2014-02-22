@@ -8,7 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-var poker = require('./node_modules/node-poker/lib/node-poker');
+var poker = require('./node-poker/lib/node-poker');
 
 var app = express();
 
