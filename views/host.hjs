@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<link rel="stylesheet" href="/styles/style.css" />
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+	</head>
+	<body>
+		<h1>{{ title }}</h1>
+		<p>Welcome to {{ title }}</p>
+		
+		<hr />
+		
+			<h2>Host a Game</h2>
+			
+			<input type="text" id="game-name" value="Game Name" />
+			<input type="number" id="starting-chips" value="1000" />
+			<input type="number" id="small-blind" value="25" />
+			<input type="number" id="big-blind" value="50" />
+			
+			<input type="button" id="host-game" value="Host" />
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="js/chat.js"></script>
+	</body>
+</html>
