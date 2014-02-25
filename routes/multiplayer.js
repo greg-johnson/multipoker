@@ -5,9 +5,7 @@
 
 exports.multiplayer = function(req, res){
 
-	var server = http.createServer(app).listen(app.get('port'), function(){
-	  console.log('Express server listening on port ' + app.get('port'));
-	});
+	
 	
 	var poker = require('./node-poker/lib/node-poker');
 	var table = new poker.Table(50,100,2,10,100,1000);

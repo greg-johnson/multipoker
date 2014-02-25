@@ -10,30 +10,13 @@
 		<h1>{{ title }}</h1>
 		<p>Welcome to {{ title }}</p>
 		
-		<hr />
+		<a href="/host" title="Host Game">Host a Game</a>
 		
-			<h2>Game Buttons</h2>
-			
-			<input type="button" id="game-start" value="Start Game" />
-			
-			<br /><br />
-			
-			<input type="button" id="call" value="Call" />
-			<input type="button" id="check" value="Check" />
-			<input type="button" id="bet" value="Bet" />
-			<input type="button" id="fold" value="Fold" />
+		<br />
 		
-		<hr />
-		
-			<h2>Chat Area</h2>
-			
-			<input type="text" value="Name" />
-			<input type="text" value="Message" />
-			<input type="button" id="chat-send" value="Send" />
+		<a href="/multiplayer" title="Join a Game">Join a Game</a>
 
-		<script src="/socket.io/socket.io.js"></script>
 		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="js/chat.js"></script>
 	</body>
 </html>
